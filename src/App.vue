@@ -1,12 +1,18 @@
 <template>
   <div class="page">
-    <div id="app" class="container">
-      <h1>Amiibo Search</h1>
 
+    <div class="jumbotron jumbotron-fluid bg-dark">
+      <div class="container text-light">
+        <h1 class="display-4">AmiiboSource</h1>
+        <p class="lead">Your source for searchable amiibos.</p>
+      </div>
+    </div>
+
+    <div id="app" class="container">
       <form>
         <div class="form-group">
           <label for="amiibo-search" class="h2">Amiibo Filter</label>
-          <input v-model="amiiboSearch" v-on:input="updateAmiibos(amiiboSearch)" type="text" class="form-control" id="amiibo-search" placeholder="Amiibo Name">
+          <input v-model="amiiboSearch" v-on:input="updateAmiibos(amiiboSearch)" type="text" class="form-control" id="amiibo-search" placeholder="Character Name">
         </div>
       </form>
 
