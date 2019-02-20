@@ -1,4 +1,4 @@
-# vue-spells
+# vue-amiibos
 
 ## Project setup
 ```
