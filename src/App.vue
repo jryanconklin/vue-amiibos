@@ -52,18 +52,24 @@ export default {
   data() {
     return {
       amiibos: [],
+      amiibosOriginal: [],
       amiiboSearch: '',
     }
   },
 
   created() {
-    this.getAllAmiibos();
+    this.initAmiibos();
   },
 
   methods: {
-    async getAllAmiibos() {
+    async initAmiibos() {
       let data = await (await fetch(API_URL)).json();
-      this.amiibos = await (data.amiibo)
+      this.amiibos = await (data.amiibo);
+      this.amiibosOriginal = await (data.amiibo);
+    },
+
+    getAllAmiibos() {
+      return this.amiibos = this.amiibosOriginal;
     },
 
     updateAmiibos(input) {
