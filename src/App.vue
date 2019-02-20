@@ -71,7 +71,7 @@ export default {
         this.getAllAmiibos();
       } else {
         this.amiibos = this.amiibos.filter(function(item) {
-          return item.name.match(input)
+          return item.name.toLowerCase().match(input.toLowerCase())
         })
       }
     },
