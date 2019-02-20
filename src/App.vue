@@ -68,7 +68,7 @@ export default {
 
     updateAmiibos(input) {
       if (!input.length) {
-        this.amiibos = this.getAllAmiibos();
+        this.getAllAmiibos();
       } else {
         this.amiibos = this.amiibos.filter(function(item) {
           return item.name.match(input)
@@ -77,8 +77,6 @@ export default {
     },
 
   },
-
-
 
 }
 </script>
@@ -98,5 +96,4 @@ export default {
   height: 20vh;
   object-fit: cover;
 }
-
 </style>
