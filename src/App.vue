@@ -10,12 +10,18 @@
     </div>
 
     <div id="app" class="container">
+
+      <!-- @TODO Handle backspace -->
+      <!-- @TODO Disable Form Submit and Add Reset Button -->
+      <h2>Search Filters</h2>
       <form>
-        <div class="form-group">
-          <label for="amiibo-search" class="h2">Amiibo Filter</label>
-          <input v-model="amiiboSearch" v-on:input="updateAmiibos(amiiboSearch)" type="text" class="form-control" id="amiibo-search" placeholder="Character Name">
-          <!-- @TODO Handle backspace -->
-          <!-- @TODO Disable Form Submit and Add Reset Button -->
+        <div class="row">
+          <div class="col">
+            <input v-model="amiiboCharacterSearch" v-on:input="updateAmiibos(amiiboCharacterSearch, amiiboSearchType = 'name')" type="text" class="form-control" id="amiibo-character-search" placeholder="Character Name">
+          </div>
+          <div class="col">
+            <input v-model="amiiboSeriesSearch" v-on:input="updateAmiibos(amiiboSeriesSearch, amiiboSearchType = 'amiiboSeries')" type="text" class="form-control" id="amiibo-series-search" placeholder="Series Name">
+          </div>
         </div>
       </form>
 
@@ -45,7 +51,9 @@ export default {
     return {
       amiibos: [],
       amiibosOriginal: [],
-      amiiboSearch: '',
+      amiiboCharacterSearch: '',
+      amiiboSeriesSearch: '',
+      amiiboSearchType: ''
     }
   },
 
@@ -64,12 +72,12 @@ export default {
       return this.amiibos = this.amiibosOriginal;
     },
 
-    updateAmiibos(input) {
+    updateAmiibos(input, searchType) {
       if (!input.length) {
         this.getAllAmiibos();
       } else {
         this.amiibos = this.amiibos.filter(function(item) {
-          return item.name.toLowerCase().match(input.toLowerCase())
+          return item[searchType].toLowerCase().match(input.toLowerCase())
         })
       }
     },
