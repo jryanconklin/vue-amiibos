@@ -14,7 +14,7 @@
       <!-- @TODO Handle backspace -->
       <!-- @TODO Disable Form Submit and Add Reset Button -->
       <h2>Search Filters</h2>
-      <form>
+      <form v-on:submit.prevent="onSubmit">
         <div class="row">
           <div class="col">
             <input v-model="amiiboCharacterSearch" v-on:input="updateAmiibos(amiiboCharacterSearch, amiiboSearchType = 'name')" type="text" class="form-control" id="amiibo-character-search" placeholder="Character Name">
@@ -23,6 +23,7 @@
             <input v-model="amiiboSeriesSearch" v-on:input="updateAmiibos(amiiboSeriesSearch, amiiboSearchType = 'amiiboSeries')" type="text" class="form-control" id="amiibo-series-search" placeholder="Series Name">
           </div>
         </div>
+        <button v-on:click="getAllAmiibos" class="btn btn-info bg-shiny m-1">Clear Filters</button>
       </form>
 
       <h2>Search Results</h2>
