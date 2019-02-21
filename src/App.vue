@@ -30,16 +30,21 @@
             <select v-model="seriesSelect"
               id="amiibo-series-select"
               class="custom-select"
-              v-on:change="updateAmiibos(seriesSelect, searchType = 'amiiboSeries')"
+              v-on:change=
+              "updateAmiibos(seriesSelect, searchType = 'amiiboSeries')"
             >
               <option value="">Select an Amiibo Series</option>
-              <option v-for="(amiiboSeries, index) in amiiboSeriesUnique" :key="index" v-bind:value="amiiboSeries">{{ amiiboSeries }}</option>
+              <option v-for="(amiiboSeries, index) in amiiboSeriesUnique"
+                :key="index"
+                v-bind:value="amiiboSeries"
+              >{{ amiiboSeries }}</option>
             </select>
           </div>
 
         </div> <!-- End Row -->
+
         <!-- Search Field Reset Button: Resets Amiibo Array to OG State -->
-        <!-- @TODO Clear Button Should Empty Search Inputs -->
+        <!-- @TODO Combine Clear Button Functions -->
         <button
           v-on:click="resetForm"
           class="btn btn-success m-1"
@@ -91,7 +96,7 @@ export default {
 
   computed: {
     amiiboSeriesUnique () {
-      return [...new Set(this.amiibosOriginal.map(a => a.amiiboSeries))]
+      return [...new Set(this.amiibos.map(a => a.amiiboSeries))]
     }
   },
 
@@ -139,7 +144,22 @@ export default {
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
 
 .bg-shiny {
-  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  background-image:
+    linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
 }
 
 </style>
