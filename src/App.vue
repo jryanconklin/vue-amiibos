@@ -11,7 +11,6 @@
 
     <!-- Search Filters: Provide Searchable Fields for Amiibos -->
     <div id="app" class="container">
-      <!-- @TODO Disable Form Submit and Add Reset Button -->
       <h2>Search Filters</h2>
       <form v-on:submit.prevent="onSubmit">
         <div class="row">
@@ -39,6 +38,7 @@
           </div>
         </div> <!-- End Row -->
         <!-- Search Field Reset Button: Resets Amiibo Array to OG State -->
+        <!-- @TODO Clear Button Should Empty Search Inputs -->
         <button
           v-on:click="getAllAmiibos"
           class="btn btn-success m-1"
