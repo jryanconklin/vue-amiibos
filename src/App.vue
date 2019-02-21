@@ -1,7 +1,8 @@
 <template>
   <div class="page">
 
-    <div class="jumbotron jumbotron-fluid bg-dark">
+    <!-- Jumbotron as Own Component -->
+    <div class="jumbotron jumbotron-fluid bg-shiny">
       <div class="container text-light">
         <h1 class="display-4">AmiiboSource</h1>
         <p class="lead">Your source for searchable amiibos.</p>
@@ -79,4 +80,9 @@ export default {
 
 <style>
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+
+.bg-shiny {
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
 </style>
