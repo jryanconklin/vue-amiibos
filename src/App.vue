@@ -41,7 +41,7 @@
         <!-- Search Field Reset Button: Resets Amiibo Array to OG State -->
         <button
           v-on:click="getAllAmiibos"
-          class="btn btn-info bg-shiny m-1"
+          class="btn btn-success m-1"
         >
           Clear Filters
         </button>
@@ -95,12 +95,12 @@ export default {
     },
 
     getAllAmiibos() {
-      return this.amiibos = this.amiibosOriginal;
+      return this.amiibosOriginal;
     },
 
     updateAmiibos(input, searchType) {
       if (!input.length) {
-        this.getAllAmiibos();
+        this.amiibos = this.getAllAmiibos();
       } else {
         this.amiibos = this.amiibosOriginal.filter(function(item) {
           return item[searchType].toLowerCase().match(input.toLowerCase())
