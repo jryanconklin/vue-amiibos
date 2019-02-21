@@ -12,7 +12,7 @@
     <!-- Search Filters: Provide Searchable Fields for Amiibos -->
     <div id="app" class="container">
       <h2>Search Filters</h2>
-      <form v-on:submit.prevent="onSubmit">
+      <form id="amiibo-search-form" v-on:submit.prevent>
         <div class="row">
           <!-- Character Search: Input String Search for Amiibo Characters -->
           <div class="col">
@@ -24,26 +24,33 @@
               placeholder="Character Name"
             >
           </div>
+
           <!-- Series Filter: Dropdown List of Amiibo Series -->
-          <!-- @TODO Currently search field, update to dropdown -->
           <div class="col">
-            <input v-model="seriesSearch"
-              v-on:input="
-              updateAmiibos(seriesSearch, searchType = 'amiiboSeries')"
-              type="text"
-              class="form-control"
-              id="amiibo-series-search"
-              placeholder="Series Name"
+            <select v-model="seriesSelect"
+              id="amiibo-series-select"
+              class="custom-select"
+              v-on:change="updateAmiibos(seriesSelect, searchType = 'amiiboSeries')"
             >
+              <option value="">Select an Amiibo Series</option>
+              <option v-for="(amiiboSeries, index) in amiiboSeriesUnique" :key="index" v-bind:value="amiiboSeries">{{ amiiboSeries }}</option>
+            </select>
           </div>
+
         </div> <!-- End Row -->
         <!-- Search Field Reset Button: Resets Amiibo Array to OG State -->
         <!-- @TODO Clear Button Should Empty Search Inputs -->
         <button
-          v-on:click="getAllAmiibos"
+          v-on:click="resetForm"
           class="btn btn-success m-1"
         >
           Clear Filters
+        </button>
+        <button
+          v-on:click="resetAmiibos"
+          class="btn btn-success m-1"
+        >
+          Reset Amiibos
         </button>
       </form>
 
@@ -72,14 +79,19 @@ export default {
     AmiiboCard,
   },
 
-
   data() {
     return {
       amiibos: [],
       amiibosOriginal: [],
       characterSearch: '',
-      seriesSearch: '',
-      searchType: ''
+      seriesSelect: '',
+      searchType: '',
+    }
+  },
+
+  computed: {
+    amiiboSeriesUnique () {
+      return [...new Set(this.amiibosOriginal.map(a => a.amiiboSeries))]
     }
   },
 
@@ -106,6 +118,15 @@ export default {
           return item[searchType].toLowerCase().match(input.toLowerCase())
         })
       }
+    },
+
+    resetForm() {
+      let form = document.getElementById('amiibo-search-form');
+      form.reset();
+    },
+
+    resetAmiibos() {
+      this.amiibos = this.getAllAmiibos();
     },
 
   }, // End Methods
