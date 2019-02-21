@@ -11,24 +11,49 @@
 
     <div id="app" class="container">
 
-      <!-- @TODO Handle backspace -->
       <!-- @TODO Disable Form Submit and Add Reset Button -->
       <h2>Search Filters</h2>
       <form v-on:submit.prevent="onSubmit">
         <div class="row">
+          <!-- Character Search: Input String Search for Amiibo Characters -->
           <div class="col">
-            <input v-model="amiiboCharacterSearch" v-on:input="updateAmiibos(amiiboCharacterSearch, amiiboSearchType = 'name')" type="text" class="form-control" id="amiibo-character-search" placeholder="Character Name">
+            <input v-model="characterSearch"
+              v-on:input="
+              updateAmiibos(characterSearch, searchType = 'name')"
+              type="text" class="form-control"
+              id="amiibo-character-search"
+              placeholder="Character Name"
+            >
           </div>
+          <!-- Series Filter: Dropdown List of Amiibo Series -->
+          <!-- @TODO Currently search field, update to dropdown -->
           <div class="col">
-            <input v-model="amiiboSeriesSearch" v-on:input="updateAmiibos(amiiboSeriesSearch, amiiboSearchType = 'amiiboSeries')" type="text" class="form-control" id="amiibo-series-search" placeholder="Series Name">
+            <input v-model="seriesSearch"
+              v-on:input="
+              updateAmiibos(seriesSearch, searchType = 'amiiboSeries')"
+              type="text"
+              class="form-control"
+              id="amiibo-series-search"
+              placeholder="Series Name"
+            >
           </div>
-        </div>
-        <button v-on:click="getAllAmiibos" class="btn btn-info bg-shiny m-1">Clear Filters</button>
+        </div> <!-- End Row -->
+        <!-- Search Field Reset Button: Resets Amiibo Array to OG State -->
+        <button
+          v-on:click="getAllAmiibos"
+          class="btn btn-info bg-shiny m-1"
+        >
+          Clear Filters
+        </button>
       </form>
 
+      <!-- Amiibo Card Results: See ./components/AmiiboCard.vue -->
       <h2>Search Results</h2>
       <div class="row">
-        <AmiiboCard v-for="(amiibo, index) in amiibos" :amiibo="amiibo" :key="index"></AmiiboCard>
+        <AmiiboCard
+          v-for="(amiibo, index) in amiibos" :amiibo="amiibo"
+          :key="index"
+        ></AmiiboCard>
       </div>
 
     </div>
@@ -52,9 +77,9 @@ export default {
     return {
       amiibos: [],
       amiibosOriginal: [],
-      amiiboCharacterSearch: '',
-      amiiboSeriesSearch: '',
-      amiiboSearchType: ''
+      characterSearch: '',
+      seriesSearch: '',
+      searchType: ''
     }
   },
 
@@ -77,7 +102,7 @@ export default {
       if (!input.length) {
         this.getAllAmiibos();
       } else {
-        this.amiibos = this.amiibos.filter(function(item) {
+        this.amiibos = this.amiibosOriginal.filter(function(item) {
           return item[searchType].toLowerCase().match(input.toLowerCase())
         })
       }
