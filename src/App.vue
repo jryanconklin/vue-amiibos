@@ -1,7 +1,7 @@
 <template>
   <div class="page">
 
-    <!-- Jumbotron as Own Component -->
+    <!-- Jumbotron: Simple Site Header -->
     <div class="jumbotron jumbotron-fluid bg-shiny">
       <div class="container text-light">
         <h1 class="display-4">AmiiboSource</h1>
@@ -9,8 +9,8 @@
       </div>
     </div>
 
+    <!-- Search Filters: Provide Searchable Fields for Amiibos -->
     <div id="app" class="container">
-
       <!-- @TODO Disable Form Submit and Add Reset Button -->
       <h2>Search Filters</h2>
       <form v-on:submit.prevent="onSubmit">
