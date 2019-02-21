@@ -14,6 +14,8 @@
         <div class="form-group">
           <label for="amiibo-search" class="h2">Amiibo Filter</label>
           <input v-model="amiiboSearch" v-on:input="updateAmiibos(amiiboSearch)" type="text" class="form-control" id="amiibo-search" placeholder="Character Name">
+          <!-- @TODO Handle backspace -->
+          <!-- @TODO Disable Form Submit and Add Reset Button -->
         </div>
       </form>
 

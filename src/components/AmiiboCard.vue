@@ -5,7 +5,6 @@
         <h4 class="text-truncate">{{ amiibo.name }}</h4>
         <h5>Series: {{ amiibo.amiiboSeries }}</h5>
       </div>
-      <!--<h6 class="card-header py-3">{{ amiibo.amiiboSeries }} | {{ amiibo.name}}</h6>-->
       <div class="card-img-top m-1">
         <img class="img-fluid" :src="amiibo.image" :alt="amiibo.name">
       </div>
@@ -13,7 +12,7 @@
         <div class="card-title rounded mb-1 p-1 text-center"><span class="text-light">Release Dates</span></div>
         <div class="mb-2">
           <ul class="list-group list-group-flush" v-for="(date, index) in amiibo.release" :key="index">
-            <li class="list-group-item"><span class="text-uppercase font-weight-bold">{{ index }}:</span> {{ date ? date : 'No Release Date Available' }}</li>
+            <li class="list-group-item"><span class="text-uppercase font-weight-bold">{{ index }}:</span> {{ date ? date : 'N/A' }}</li>
           </ul>
         </div>
         <!-- @TODO Include Affiliate ID for Amazon in Link-->
